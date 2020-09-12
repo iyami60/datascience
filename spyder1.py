@@ -23,5 +23,12 @@ from matplotlib import pyplot as plt
 from sklearn.metrics import confusion_matrix
 import itertools
 
+train_path = "C:\Users\ISSAM\Desktop\Deep_Learning_A_Z\DL Colab Changes\Convolutional_Neural_Networks 3\dataset\training_set"
+test_path ="C:\Users\ISSAM\Desktop\Deep_Learning_A_Z\DL Colab Changes\Convolutional_Neural_Networks 3\dataset\test_set"
+
+train_batches = ImageDataGenerator().flow_from_directory(train_path,target_size=(256,256),classes = ['dog','cat'],batch_size=10)
+test_batches = ImageDataGenerator().flow_from_directory(train_path,target_size=(256,256),classes = ['dog','cat'],batch_size=4)
+
+
 
 
