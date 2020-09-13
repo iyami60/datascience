@@ -14,7 +14,7 @@ from keras.models import Sequential
 from keras.layers.convolutional import *
 from keras.layers.core import Dense,Flatten
 from keras.optimizers import Adam
-from keras.layers import Activation
+from keras.layers import Activation,Conv2D,MaxPool2D
 from keras.metrics import categorical_crossentropy
 #Data Normalisation
 from keras.layers.normalization import BatchNormalization
@@ -22,6 +22,8 @@ from keras.layers.normalization import BatchNormalization
 from matplotlib import pyplot as plt
 from sklearn.metrics import confusion_matrix
 import itertools
+import warnings
+warnings.simplefilter(action="ignore",category=FutureWarning)
 
 train_path = r"C:\Users\ISSAM\Desktop\Deep_Learning_A_Z\DL Colab Changes\Convolutional_Neural_Networks 3\dataset\training_set"
 test_path =r"C:\Users\ISSAM\Desktop\Deep_Learning_A_Z\DL Colab Changes\Convolutional_Neural_Networks 3\dataset\test_set"
@@ -45,6 +47,43 @@ def plots(ims, figsize = (12,6),rows = 1,interp=False,titles=None):
 
 imgs,labels  = next(train_batches)
 plots(imgs,titles=labels)
+
+#initialise the models
+model  = Sequential([
+        Conv2D(filters=32,kernel_size=(3,3),activation = 'relu',padding = "same",input_shape=(256,256,3)),
+        MaxPool2D(pool_size=(2,2),strides=2),
+        Conv2D(filters=64,kernel_size=(3,3),activation = 'relu',padding = "same"),
+        MaxPool2D(pool_size=(2,2),strides=2),
+        Flatten(),
+        Dense(units=2,activation='softmax'),
+                    ])
+
+model.summary()
+model.compile(optimizer = Adam(learning_rate=0.0001),loss='categorical_crossentropy',metrics=['accuracy'])
+model.fit(x=train_batches,validation_data = test_batches,epochs =10,verbose = 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
     
 
