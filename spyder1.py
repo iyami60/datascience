@@ -62,10 +62,20 @@ model.summary()
 model.compile(optimizer = Adam(learning_rate=0.0001),loss='categorical_crossentropy',metrics=['accuracy'])
 model.fit(x=train_batches,validation_data = test_batches,epochs =10,verbose = 2)
 
-
-
-
-
+model.save('cat_vs_dogs')
+#Make call for the new model
+new_model = tf.keras.models.load_model('cat_vs_dogs')
+#making test for single images
+from keras.preprocessing import image
+#test1_path = r'C:\Users\ISSAM\Desktop\Deep_Learning_A_Z\DL Colab Changes\Convolutional_Neural_Networks 3\dataset\single_prediction\cat_or_dog_1.jpg'
+#test_image = ImageDataGenerator().flow_from_directory(test1_path,target_size=(256,256))
+path = r'C:\Users\ISSAM\Desktop\Deep_Learning_A_Z\DL Colab Changes\Convolutional_Neural_Networks 3\dataset\single_prediction\cat_or_dog_1.jpg'
+test_image = image.load_img(path,target_size=(256,256))
+test_image = image.img_to_array(test_image)
+test_image = np.expand_dims(test_image,axis = 0)
+result = new_model.predict(test_image)
+#test_batches.class_indices
+print(result)
 
 
 
