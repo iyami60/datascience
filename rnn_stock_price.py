@@ -61,6 +61,31 @@ regressor.compile(optimizer = 'adam', loss = "mean_squared_error")
 regressor.fit(X_train, y_train, epochs=100, batch_size = 32)
 
 
+#PART3 : Make the predictions and visualizing the Results
+#Get teh real price of stock of the year that we want.
+name1 = r"C:\Users\ISSAM\Documents\GitHub\data\Google_Stock_Price_Test.csv"
+dataset_test = pd.read_csv(name1)
+real_price_stock = dataset_test.iloc[:,1:2].values
 
+#concatenate dataset
+dataset_total = pd.concat((dataset_train['Open'],dataset_test['Open']),axis=0)
+inputs = dataset_total[len(dataset_total)-len(dataset_test)-60:].values
+inputs = inputs.reshape(-1,1)
+inputs = scaler.transform(inputs)
 
+X_test = []
+for i in range(60,80):
+     X_test.append(inputs[i-60:i,0])
+X_test = np.array(X_test)
+X_test = np.reshape(X_test,(X_test.shape[0],X_test.shape[1],1))
+predicted_stock_price = regressor.predict(X_test)
+predicted_stock_price = scaler.inverse_transform(predicted_stock_price)
 
+#visualisation result
+plt.plot(real_price_stock, color='red', label='Real Ggl stock price')
+plt.plot(predicted_stock_price, color='blue', label='Predicted Ggl stock price')
+plt.title('Ggl Stock Price prediction')
+plt.xlabel('Time')
+plt.ylabel('Ggl stock price')
+plt.legend()
+plt.show()
