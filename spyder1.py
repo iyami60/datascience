@@ -69,6 +69,7 @@ new_model = tf.keras.models.load_model('cat_vs_dogs')
 from keras.preprocessing import image
 #test1_path = r'C:\Users\ISSAM\Desktop\Deep_Learning_A_Z\DL Colab Changes\Convolutional_Neural_Networks 3\dataset\single_prediction\cat_or_dog_1.jpg'
 #test_image = ImageDataGenerator().flow_from_directory(test1_path,target_size=(256,256))
+
 path1 = r'C:\Users\ISSAM\Desktop\Deep_Learning_A_Z\DL Colab Changes\Convolutional_Neural_Networks 3\dataset\single_prediction\xx.jpg'
 path2 = r'C:\Users\ISSAM\Desktop\Deep_Learning_A_Z\DL Colab Changes\Convolutional_Neural_Networks 3\dataset\single_prediction\cat_or_dog_2.jpg'
 test_image = image.load_img(path1,target_size=(256,256))
