@@ -26,5 +26,7 @@
 7- Conclusion generale
 8- Abreviation 
 9- References
+	*https://github.com/jbernhard-nw/stock-price-forecasting/blob/master/time-series.py
+	**https://medium.com/swlh/predicting-stock-prices-using-deep-learning-models-310b41cec90a
 
  
