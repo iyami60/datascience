@@ -8,20 +8,22 @@
 		2-2 limites
 		2-3 domaines d'application
 	3-deep learning (supervised/unsupervised)
-		3-1 definition
+		3-1 definition (https://www.kdnuggets.com/2018/09/introduction-deep-learning.html)
 		3-2 limites
 		3-3 domaines d'application
+		(intro : https://www.kdnuggets.com/2018/09/introduction-deep-learning.html)
 	4-Conclusion
 5- Chapitre2 : les differnets algorithme supervisee de deeplearnig
 	5-1 introduction
 	5-2 ANN (definition/steps/application)
-	5-3 CNN (definition/steps/application)
+	5-3 CNN (definition/steps/application) https://www.kdnuggets.com/2020/06/introduction-convolutional-neural-networks.html
 	5-4 RNN (definition/steps/application)
 	5-5 conclusion
 6- Chapitre3 : Projet-Prediction de la valeurs du stocks
 	6-1 introduction
 	6-2 	
-
+	
+	6-4: Outils de developpement
 	6-x Conclusion
 7- Conclusion generale
 8- Abreviation 
