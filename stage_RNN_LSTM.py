@@ -66,4 +66,5 @@ regressor.compile(optimizer = 'Adam',loss = 'mean_squared_error')
 #fit regressor with DATA
 regressor.fit(X_train,y_test,batch_size = 40,epochs = 100)
 
+#save regressor
 
