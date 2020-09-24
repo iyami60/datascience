@@ -4,6 +4,7 @@
 4- Chapitre1 : machine learning et deep learning comme un espace d'etude et leurs limits
 	1*Introduction
 	2-machine learning
+	(slides) https://fr.slideshare.net/embeddedvision/an-introduction-to-machine-learning-and-how-to-teach-machines-to-see-a-presentation-from-tryolabs
 		2-1 definition
 		2-2 limites
 		2-3 domaines d'application
