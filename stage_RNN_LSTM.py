@@ -64,7 +64,8 @@ regressor.add(Dense(units = 1))
 regressor.compile(optimizer = 'Adam',loss = 'mean_squared_error')
 
 #fit regressor with DATA
-regressor.fit(X_train,y_test,batch_size = 40,epochs = 60)
+regressor.fit(X_train,y_test,batch_size = 40,epochs = 50)
 
 #save regressor
 
+regressor.save('model_stafe_1')
