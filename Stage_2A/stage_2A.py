@@ -12,7 +12,7 @@ from keras.optimizers import SGD
 from keras.models import Sequential
 from keras.layers import Dense, LSTM, Dropout, GRU, SimpleRNN
 from sklearn.preprocessing import MinMaxScaler
-from fbprophet import Prophet
+
 
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
@@ -46,7 +46,7 @@ def create_files_dict(pth=r'C:\Users\ISSAM\Documents\GitHub\data\datset'):
     return all_data
 
 
-def plot_data(data, stock_name, pth=r'C:\Users\ISSAM\Documents\GitHub\data\datset/figures/'):
+def plot_data(data, stock_name, pth=r'C:\Users\ISSAM\Documents\GitHub\data\figures'):
     '''
     plot the data
     '''
@@ -124,7 +124,8 @@ def create_single_layer_small_rnn_model(X_train, y_train, X_test, sc):
     # Finalizing predictions
     scaled_preds = model.predict(X_test)
     test_preds = sc.inverse_transform(scaled_preds)
-
+    model.save('small_layer')
+    
     return model, test_preds
 
 
@@ -146,7 +147,7 @@ def create_single_layer_rnn_model(X_train, y_train, X_test, sc):
     # Finalizing predictions
     scaled_preds = model.predict(X_test)
     test_preds = sc.inverse_transform(scaled_preds)
-
+    model.save("single_layer_rnn")
     return model, test_preds
 
 
@@ -160,7 +161,7 @@ def create_rnn_model(X_train, y_train, X_test, sc):
     model.add(SimpleRNN(32, return_sequences=True))
     model.add(SimpleRNN(32, return_sequences=True))
     model.add(SimpleRNN(32, return_sequences=True))
-    model.add(SimpleRNN(32))
+    model.add(SimpleRNN(3--2))
     model.add(Dense(1))
 
     model.compile(optimizer='rmsprop', loss='mean_squared_error')
@@ -171,7 +172,7 @@ def create_rnn_model(X_train, y_train, X_test, sc):
     # Finalizing predictions
     scaled_preds = model.predict(X_test)
     test_preds = sc.inverse_transform(scaled_preds)
-
+    model.save("rnn_model")
     return model, test_preds
 
 
@@ -242,7 +243,7 @@ def create_GRU_with_drop_out_model(X_train, y_train, X_test, sc):
 
     GRU_predicted_stock_price = regressorGRU.predict(X_test)
     GRU_predicted_stock_price = sc.inverse_transform(GRU_predicted_stock_price)
-
+    regressorGRU.save('GRU_with_drop_out_model_copy')
     return regressorGRU, GRU_predicted_stock_price
 
 
@@ -296,7 +297,6 @@ def plot_results(actuals,
                  stock_name,
                  small_one_layer_preds,
                  one_layer_preds,
-                 yearly_prophet_preds,
                  gru_drop_preds,
                  rnn_preds,
                  gru_preds,
@@ -305,15 +305,13 @@ def plot_results(actuals,
     plot the results
     '''
     plt.figure(figsize=(20, 5))
-    plt.plot(yearly_prophet_preds.reset_index()[
-             'yhat'].values[-250:], label='prophet yearly predictions')
     plt.plot(stock_data["High"]['2017':].values[:-1], label='actual values')
     plt.plot(small_one_layer_preds, label='Single Layer Small RNN values')
     plt.plot(one_layer_preds, label='Single Layer RNN values')
     plt.plot(gru_drop_preds, label='GRU with dropout values')
     plt.plot(rnn_preds, label='RNN values')
     plt.plot(gru_preds, label='GRU values')
-    plt.title('{} Predictions from Prophet vs. Actual'.format(stock_name))
+    plt.title('{} Predictions from Actual'.format(stock_name))
     plt.legend()
 
     fig_path = os.path.join(plot_pth, 'results', stock_name + '_preds')
@@ -362,7 +360,6 @@ if __name__ == '__main__':
                      stock_name,
                      small_one_layer_preds,
                      one_layer_preds,
-                     yearly_preds,
                      gru_drop_preds,
-                     rnn_preds,
-                     gru_preds)
+                     rnn_preds
+                     )
